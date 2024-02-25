@@ -17,9 +17,13 @@ jobs:
           haxe-version: 4.2.5
       - name: Install Libraries
         run: |
+          sudo apt-get install libvlc-dev
+          sudo apt-get install libvlccore-dev
           haxelib setup ~/haxelib
+          haxelib install hxcpp > /dev/null --quiet
           haxelib --quiet install hmm
           haxelib run hmm install --quiet
+          haxelib git hxCodec https://github.com/polybiusproxy/hxCodec
       - name: Configure Android
         run: |
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
